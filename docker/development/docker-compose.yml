@@ -1,0 +1,21 @@
+version: '1'
+
+services:
+  
+  database:
+    image: postgres
+    restart: always
+
+  backend:
+    build: backend
+    links:
+      - database:postgres
+    ports:
+      - 3030:3030
+    restart: always
+    
+  frontend:
+    build: frontend
+    ports:
+      - 8080:8080
+    restart: always
