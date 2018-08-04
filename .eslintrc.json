@@ -1,0 +1,27 @@
+{
+
+    "env": {
+        "jasmine": true
+	},
+	
+    "rules": {
+        "arrow-parens": 0,
+        "array-bracket-spacing": [ "error", "always" ],
+        "brace-style": [ "error", "stroustrup", { "allowSingleLine": true } ],
+        "object-curly-spacing": [ "error", "always", { "objectsInObjects": true } ],
+        "operator-linebreak": [ "warn", "before", { "overrides": { "+=": "ignore", "=": "ignore", "-=": "ignore" } } ],
+        "no-tabs": 0,
+        "no-multiple-empty-lines": [ "error", { "max": 2 } ],
+        "space-in-parens": [ "error", "always" ],
+        "space-before-function-paren": [ "error", { "anonymous": "never", "named": "never", "asyncArrow": "always" } ],
+        "indent": [ "error", "tab", { "SwitchCase": 1 } ],
+        "camelcase": 0,
+        "semi": [ "error", "always" ],
+        "padded-blocks": [ "error", "always" ]
+	},
+	
+    "parserOptions": {
+       "ecmaVersion": 8
+	}
+	
+}

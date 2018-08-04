@@ -1,4 +1,4 @@
-# frontend docker for libelulle.io
+# frontend docker for libellule.io
 
 FROM ubuntu:18.04
 

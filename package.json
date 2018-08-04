@@ -1,0 +1,30 @@
+{
+  "name": "libellule-server-io",
+  "description": "The libellule project api server",
+  "version": "0.5.0",
+  "main": "src",
+  "author": "@shadowRR",
+  "scripts": {
+	"start": "node src/",
+    "eslint": "eslint src/. test/. --config .eslintrc.json"
+  },
+  "dependencies": {
+    "@feathersjs/configuration": "^2.0.0",
+    "@feathersjs/errors": "^3.3.0",
+    "@feathersjs/express": "^1.2.3",
+    "@feathersjs/feathers": "^3.1.7",
+    "@feathersjs/socketio": "^3.2.2",
+    "compression": "^1.7.3",
+    "cors": "^2.8.4",
+    "helmet": "^3.13.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0"
+  },
+  "engines": {
+    "node": ">= 8.11.2 < 9",
+    "npm": ">= 5.0.0"
+  }
+}
