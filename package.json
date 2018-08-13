@@ -5,10 +5,20 @@
   "main": "src",
   "author": "@shadowRR",
   "scripts": {
-	"start": "node src/",
-    "eslint": "eslint src/. test/. --config .eslintrc.json"
+    "start": "node src/",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "knex": "knex --knexfile='db/knexfile.js'",
+    "knex-build-db": "npm run knex migrate:latest",
+    "knex-rollback": "npm run knex migrate:rollback"
+  },
+  "directories": {
+    "lib": "src",
+    "test": "test"
   },
   "dependencies": {
+    "@feathersjs/authentication": "^2.1.7",
+    "@feathersjs/authentication-jwt": "^2.0.1",
+    "@feathersjs/authentication-local": "^1.2.1",
     "@feathersjs/configuration": "^2.0.0",
     "@feathersjs/errors": "^3.3.0",
     "@feathersjs/express": "^1.2.3",
@@ -16,7 +26,11 @@
     "@feathersjs/socketio": "^3.2.2",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
+    "feathers-knex": "^3.3.0",
     "helmet": "^3.13.0",
+    "knex": "^0.15.2",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0"
   },
