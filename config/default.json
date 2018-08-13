@@ -2,5 +2,10 @@
 	"host": "localhost",
 	"port": 3030,
 	"public": "../public/",
-	"postgres": "postgres://postgres:postgres@postgres:5432/libellule"
+	"postgres": "postgres://postgres:postgres@postgres:5432/libellule",
+	"authentication": {
+		"local": {
+			"usernameField": "\\username"
+		}
+	}
 }
