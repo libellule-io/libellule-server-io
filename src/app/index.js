@@ -46,4 +46,7 @@ app.use( express.errorHandler( { winston } ) );
 
 app.hooks( hooks );
 
+// others config
+require( '../config/postgres.config' );
+
 module.exports = app;

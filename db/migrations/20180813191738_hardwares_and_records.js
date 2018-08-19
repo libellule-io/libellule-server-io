@@ -1,20 +1,26 @@
 'use strict';
 
+const fs = require( 'fs' );
+const sql_folder = '20180813191738_hardwares_and_records';
+
+const create_fn_generate_node_id = fs.readFileSync(
+	`${__dirname}/../sql/${sql_folder}/functions/create_fn_generate_node_id.sql` ).toString();
+
 exports.up = function( knex, Promise ) {
 
-    return Promise.all( [
+	return Promise.all( [
 
-        knex.schema.createTable( 'hardwares', table => {
+		knex.schema.createTable( 'hardwares', table => {
 			table.increments( 'id' ).primary();
-            table.integer( 'room_id' ).notNullable().references( 'id' ).inTable( 'rooms' ).onDelete( 'CASCADE' );
-            table.string( 'identifier' ).notNullable().unique().comment( 'is "ID" from arduino' );
+			table.integer( 'room_id' ).notNullable().references( 'id' ).inTable( 'rooms' ).onDelete( 'CASCADE' );
+			table.string( 'identifier' ).notNullable().unique().comment( 'is "ID" from arduino' );
 			table.string( 'type' ).notNullable().comment( 'is "TYPE" from arduino' );
 			table.integer( 'node' ).notNullable().unique().comment( 'is "NODE" from arduino' );
-            table.string( 'name' ).notNullable();
+			table.string( 'name' ).notNullable();
 			table.timestamp( 'created_at' ).notNullable().defaultTo( knex.raw( 'now()' ) );
 		} ),
 
-        knex.schema.createTable( 'temperatures_records', table => {
+		knex.schema.createTable( 'temperatures_records', table => {
 			table.increments( 'id' ).primary();
 			table.integer( 'hardware_id' ).notNullable().references( 'id' ).inTable( 'hardwares' ).onDelete( 'CASCADE' );
 			table.decimal( 'temperature' ).notNullable();
@@ -50,22 +56,26 @@ exports.up = function( knex, Promise ) {
 			table.timestamp( 'created_at' ).notNullable().defaultTo( knex.raw( 'now()' ) );
 
 			table.index( 'hardware_id' );
-		} )
+		} ),
 
-    ] );
+		knex.schema.raw( create_fn_generate_node_id )
+
+	] );
 
 };
 
 exports.down = function( knex, Promise ) {
 
-    return Promise.all( [
+	return Promise.all( [
 
-        knex.schema.dropTable( 'temperatures_records' ),
-        knex.schema.dropTable( 'humidities_records' ),
-        knex.schema.dropTable( 'powers_records' ),
-        knex.schema.dropTable( 'waters_records' ),
-        knex.schema.dropTable( 'hardwares' )
+		knex.schema.raw( 'DROP FUNCTION fn_generate_node_id();' ),
 
-    ] );
+		knex.schema.dropTable( 'temperatures_records' ),
+		knex.schema.dropTable( 'humidities_records' ),
+		knex.schema.dropTable( 'powers_records' ),
+		knex.schema.dropTable( 'waters_records' ),
+		knex.schema.dropTable( 'hardwares' )
+
+	] );
 
 };

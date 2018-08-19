@@ -26,6 +26,7 @@
     "@feathersjs/socketio": "^3.2.2",
     "compression": "^1.7.3",
     "cors": "^2.8.4",
+    "feathers-hooks-common": "^4.16.2",
     "feathers-knex": "^3.3.0",
     "helmet": "^3.13.0",
     "knex": "^0.15.2",
